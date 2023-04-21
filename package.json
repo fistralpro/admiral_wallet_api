@@ -27,7 +27,11 @@
     "js-yaml": "^4.1.0",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
-    "swagger-ui-express": "^4.6.2"
+    "mysql2": "^3.2.3",
+    "sequelize": "^6.31.0",
+    "swagger-ui-express": "^4.6.2",
+    "uuid": "^9.0.0",
+    "validator": "^13.9.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"

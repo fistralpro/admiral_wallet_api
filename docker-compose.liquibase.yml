@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+
+  wallet_api-liquibase:
+
+    container_name: wallet_api_liquibase
+    image: liquibase/liquibase-mysql  #wthis is a local
+
+    volumes:
+      - ./liquibase/changelog.xml:/liquibase/changelog.xml
+      - ./liquibase/scripts:/liquibase/scripts
+    
+    command: --url=jdbc:${DATABASE}://${DATABASE_URI}:${DATABASE_PORT}/${DATABASE_DB} --username=${DATABASE_USER} --password=${DATABASE_PASSWORD} --changeLogFile=changelog.xml update    
+
+    networks:
+      - backend
+
+networks:
+  backend:
+    name: backend_network

@@ -2,8 +2,21 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 const port = process.env.PORT || 3000;
-const express = require('express')
+const express = require('express');
+const bodyParser = require('body-parser');
+
 const app = express()
+
+app.use(bodyParser.json({
+  verify: (req, res, buf) => {
+    try {
+      JSON.parse(buf);
+    } catch (e) {
+      res.status(400).json({message: "Invalid JSON"});
+      throw new Error('Invalid JSON');
+    }
+  }
+}));            
 
 const swaggerUi = require('swagger-ui-express')
 const jsYaml = require('js-yaml')
