@@ -28,6 +28,7 @@ git clone git@github.com:fistralpro/admiral_wallet_api.git
 
 Build the latest docker image (but don't publish it anywhere but locally)  
 ```
+cd ./admiral_wallet_api
 docker build -t admiral/admiral_npm:latest .
 ```
 
@@ -36,27 +37,26 @@ Now build the liquibase docker image (liquibase doesn't ship with a mysql driver
 docker build -f liquibase.Dockerfile -t liquibase/liquibase-mysql .
 ```
 
-Now connect to our mysql database and run the create database script for our wallet api (updates managed in liquibase)
+Now bring up our dev comtainer for the first time, connect to our mysql database and run the create database script for our wallet api (updates managed in liquibase)  
 ```
+#ignore both warnings about MYSQL_USER and MYSQL_PASSWORD, and insecure passwords on the command line... this isn't production
+docker compose -f ../admiral_dev/docker-compose.yml up --detach
 docker exec -i dev_mysql mysql -u root -ppassword < createdb.sql
+docker compose -f docker-compose.liquibase.yml up
 ```
 
 Now start the environment via docker compose chaining:  
-1) Start a mysql8 docker instance with a persistent volume for storage  
+1) Start a mysql8 docker instance with a persistent volume for storage  (it may be up previously if you have just created the db)
 2) launch the wallet-api web client docker instance  
 ```
 docker compose up --detach
 ```
 
-to apply liquibase diffs
+While developing the application you will want to run the hot restart version rather than the docker version - this uses the .env file for local variables.       
 ```
-docker compose -f docker-compose.liquibase.yml up
+npm run startd 
 ```
-
-While developing the application you will want to run the hot restart version rather than the docker version  
-```
-npm run startd
-```
+This should run on port 30000 (port number upped so you can sleave your other containers running)
 
 bash in for whatever reason
 ```

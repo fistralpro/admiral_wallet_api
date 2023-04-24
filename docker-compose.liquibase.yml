@@ -5,7 +5,7 @@ services:
   wallet_api-liquibase:
 
     container_name: wallet_api_liquibase
-    image: liquibase/liquibase-mysql  #wthis is a local
+    image: liquibase/liquibase-mysql  #this is a local
 
     volumes:
       - ./liquibase/changelog.xml:/liquibase/changelog.xml

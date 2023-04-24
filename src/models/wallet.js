@@ -1,7 +1,8 @@
 const {sequelize, DataTypes} = require('../config/db')
-
-
-
+// TODO: Return ID as string (use conversion.obfuscateString)
+// TODO: can we validate in here for not entering a createdDate?
+// TODO: cam we stop the creation of a passed in id
+// TODO: would this be better as a model type?
 const Wallet = sequelize.define('wallet', 
     {
         id: {

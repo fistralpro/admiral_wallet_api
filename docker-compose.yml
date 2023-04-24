@@ -9,7 +9,7 @@ services:
     image: admiral/admiral_npm:latest   
 
     env_file:
-       - .env
+       - env.dev
     
     environment: 
       DB_URL: mysql
@@ -19,7 +19,7 @@ services:
       - ./nodemodules:/src/node_modules    
 
     ports: 
-      - ${WALLET_API_PORT}:${WALLET_API_PORT}
+      - ${PORT}:${PORT}  
 
     depends_on: 
       - mysql

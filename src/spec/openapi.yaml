@@ -7,12 +7,12 @@ info:
   contact:
     name: Admiral Customer Engagement Tribe
 tags:
-  - name: wallet
+  - name: wallets
     description: Manage wallets
   - name: transactions
     description: Manage transactions
 paths:
-  /wallet:
+  /wallets:
     post:
       summary: Create a new wallet
       operationId: createNewWallet
@@ -43,8 +43,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
-        - wallet
-  /wallet/{walletId}:
+        - wallets
+  /wallets/{walletId}:
     get:
       summary: Fetch wallet by ID
       operationId: fetchWalletById
@@ -75,8 +75,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
-        - wallet
-  /wallet/{walletId}/transactions:
+        - wallets
+  /wallets/{walletId}/transactions:
     post:
       summary: Create transaction on wallet
       operationId: createTransaction
@@ -120,7 +120,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'  
       tags:
-        - wallet
+        - wallets
         - transactions
     get:
       summary: Fetch transactions for wallet
@@ -152,7 +152,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       tags:
-        - wallet
+        - wallets
         - transactions
 components:
   schemas:

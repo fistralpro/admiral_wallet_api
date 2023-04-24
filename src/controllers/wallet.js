@@ -1,11 +1,8 @@
 const Wallet = require("../models/wallet");
-const validator = require('validator');
-
-const id_error = 'wallet id is not a number';
 const id_not_found_error = 'wallet id not found';
 
 const getWallet = ((req, res) => {
-    const id = req.params.id;
+    const walletId = req.params.id;
 
     try {            
         Wallet.findOne({ where: { id } }).then(resource => {
@@ -26,7 +23,6 @@ const createWallet = ((req, res) => {
         .catch((err) => {
             console.log(err);
             if (err.name === 'SequelizeValidationError') {
-                console.log("1");
                 if (err.errors[0].message.includes('wallet.createdDate')) {
                     return res.status(400).json({ message  : "createdDate cannot be set"} );
                 }
@@ -38,7 +34,7 @@ const createWallet = ((req, res) => {
             } else if (err.name === 'SequelizeUniqueConstraintError') {
                 return res.status(400).json({ message  : err.errors[0].message} ); 
             } else {
-                return res.status(500).json({ error: 'Internal server error' });
+                return res.status(500).json({ message: 'Internal server error' });
             }
         });
 });
