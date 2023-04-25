@@ -6,20 +6,28 @@ services:
   app:
     container_name: wallet_api
   
-    image: admiral/admiral_npm:latest   
+    image: admiral/admiral_npm:latest
 
-    env_file:
-       - env.dev
-    
-    environment: 
-      DB_URL: mysql
-      
+    environment:
+      - PORT=3000
+      - DATABASE_URI=mysql
+      - DATABASE_DIALECT=mysql
+      - DATABASE_HOST=mysql  
+      - DATABASE_DB=wallet 
+      - DATABASE_USER=wallet_user
+      - DATABASE_PASSWORD=wallet_password
+      - DATABASE_CONNECTION_POOL_MAX=5
+      - DATABASE_CONNECTION_POOL_MIN=1
+      - DATABASE_CONNECTION_POOL_IDLE=10000
+      - DATABASE_PORT=3306
+
+      - DATABASE=mysql
     volumes:
       - ./src:/src
       - ./nodemodules:/src/node_modules    
 
     ports: 
-      - ${PORT}:${PORT}  
+      - 3000:3000  
 
     depends_on: 
       - mysql

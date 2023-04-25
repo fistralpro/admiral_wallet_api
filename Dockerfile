@@ -1,3 +1,4 @@
+# no args required during build
 FROM node:lts-alpine3.17
 
 # Create app directory

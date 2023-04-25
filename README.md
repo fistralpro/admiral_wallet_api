@@ -41,7 +41,8 @@ Now bring up our dev comtainer for the first time, connect to our mysql database
 ```
 #ignore both warnings about MYSQL_USER and MYSQL_PASSWORD, and insecure passwords on the command line... this isn't production
 docker compose -f ../admiral_dev/docker-compose.yml up --detach
-docker exec -i dev_mysql mysql -u root -ppassword < createdb.sql
+# if you get an error on the next line, the mysql server may not be fully up, try again
+docker exec --env-file env.dev -i dev_mysql mysql -u root -ppassword < createdb.sql
 docker compose -f docker-compose.liquibase.yml up
 ```
 

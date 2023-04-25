@@ -2,7 +2,7 @@ const Wallet = require("../models/wallet");
 const id_not_found_error = 'wallet id not found';
 
 const getWallet = ((req, res) => {
-    const walletId = req.params.id;
+    const id = req.params.id;
 
     try {            
         Wallet.findOne({ where: { id } }).then(resource => {

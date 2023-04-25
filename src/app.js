@@ -1,8 +1,5 @@
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config({debug: true});
-}
-
 const port = process.env.PORT || 1;
+console.log("PORT: ", port);
 if (port === 1) {
   throw new Error("PORT not set: are we missing environment variables?")
 }

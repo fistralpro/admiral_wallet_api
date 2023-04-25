@@ -11,7 +11,8 @@ services:
       - ./liquibase/changelog.xml:/liquibase/changelog.xml
       - ./liquibase/scripts:/liquibase/scripts
     
-    command: --url=jdbc:${DATABASE}://${DATABASE_URI}:${DATABASE_PORT}/${DATABASE_DB} --username=${DATABASE_USER} --password=${DATABASE_PASSWORD} --changeLogFile=changelog.xml update    
+    # todo, load these in
+    command: --url=jdbc:mysql://mysql:3306/wallet --username=wallet_user --password=wallet_password --changeLogFile=changelog.xml update    
 
     networks:
       - backend
